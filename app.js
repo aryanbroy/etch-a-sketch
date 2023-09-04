@@ -1,9 +1,10 @@
 const container = document.getElementById("container");
 const after = document.getElementById("after");
 const btn = document.querySelector('.btn');
+const colorBtn = document.querySelector('.color');
+const black = document.querySelector('.black')
 
-
-
+let rainbowColours = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
 
 function makeRows(rows, cols) {
   container.style.setProperty('--grid-rows', rows);
@@ -45,6 +46,26 @@ btn.addEventListener('click', () => {
     
 });
 
-document.querySelector('#container').addEventListener('mouseover', (e) => {
-    e.target.style.backgroundColor = 'black'
+
+function rainbow() {
+    let index = Math.floor(Math.random() * rainbowColours.length);
+    return rainbowColours[index];
+}
+console.log(rainbow())
+
+
+container.addEventListener('mouseover', (e) => {
+    e.target.style.backgroundColor = 'black';
+})
+
+colorBtn.addEventListener('click', () => {
+    container.addEventListener('mouseover', (e) => {
+        e.target.style.backgroundColor = rainbow();
+    });
+});
+
+black.addEventListener('click', () => {
+    container.addEventListener('mouseover', (e) => {
+        e.target.style.backgroundColor = 'black'
+    })
 })
